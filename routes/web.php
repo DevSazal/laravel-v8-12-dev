@@ -26,3 +26,4 @@ use App\Http\Controllers\DefaultController;
 Route::get('/', [DefaultController::class, 'index']);
 Route::get('/test',[DefaultController::class, 'index']);
 Route::get('/about',[DefaultController::class, 'about']);
+Route::get('/apiusers',[DefaultController::class, 'apiUsers']);
