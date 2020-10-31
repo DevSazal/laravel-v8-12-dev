@@ -81,5 +81,11 @@ class ApiController extends Controller
         }
     }
 
+    public function searchMemberAPI($key)
+    {
+      // code...
+        return Member::where('name', 'LIKE', '%'.$key.'%')->get();
+    }
+
 
 }

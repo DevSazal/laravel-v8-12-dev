@@ -28,3 +28,5 @@ Route::post('/store-data', [ApiController::class, 'storeDataPostAPI']);
 Route::post('/store-brand', [ApiController::class, 'storeBrandPostAPI']);
 Route::put('/update-member/{id}', [ApiController::class, 'updateMemberPutAPI']);
 Route::delete('/delete-member/{id}', [ApiController::class, 'deleteMemberAPI']);
+// search api
+Route::get('/search-api/{key}', [ApiController::class, 'searchMemberAPI']);
