@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\DefaultController;
+use App\Http\Controllers\MemberController;
 
 
 /*
@@ -27,3 +28,6 @@ Route::get('/', [DefaultController::class, 'index']);
 Route::get('/test',[DefaultController::class, 'index']);
 Route::get('/about',[DefaultController::class, 'about']);
 Route::get('/apiusers',[DefaultController::class, 'apiUsers']);
+
+// for One to one relation
+Route::get('/member-data',[MemberController::class, 'index']);

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
+
+    // function getBrandData(){
+    //   return $this->hasOne('App\Models\Brand');
+    // }
 }
