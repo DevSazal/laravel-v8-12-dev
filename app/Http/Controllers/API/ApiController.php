@@ -69,5 +69,17 @@ class ApiController extends Controller
         }
     }
 
+    public function deleteMemberAPI($id)
+    {
+      // code...
+        $result = Member::destroy($id);
+
+        if($result){
+          return ["result" => "Data has been deleted."];
+        }else{
+          return ["result" => "Operation Failed!"];
+        }
+    }
+
 
 }
