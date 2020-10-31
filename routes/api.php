@@ -23,3 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('dummyAPI', [ApiController::class, 'DummyAPI']);
 Route::get('/list/{id?}', [ApiController::class, 'getMemberAPI']);
+// Route::get("list/{key:name?}", ['ApiController::class', 'list']);
+Route::post('/store-data', [ApiController::class, 'storeDataPostAPI']);
+Route::post('/store-brand', [ApiController::class, 'storeBrandPostAPI']);
