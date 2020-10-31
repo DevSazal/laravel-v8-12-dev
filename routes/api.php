@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('dummyAPI', [ApiController::class, 'DummyAPI']);
+Route::get('/list/{id?}', [ApiController::class, 'getMemberAPI']);
