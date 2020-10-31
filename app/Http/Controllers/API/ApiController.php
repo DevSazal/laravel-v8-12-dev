@@ -20,7 +20,7 @@ class ApiController extends Controller
       // code...
       return $id ? Member::find($id) : Member::all();
     }
-    
+
     public function storeDataPostAPI(Request $req)
     {
       // code...
@@ -47,6 +47,23 @@ class ApiController extends Controller
         $result = $brand->save();
         if($result){
           return ["result" => "Data has been saved."];
+        }else{
+          return ["result" => "Operation Failed!"];
+        }
+    }
+
+    public function updateMemberPutAPI(Request $req, $id)
+    {
+      // code...
+        $member = Member::find($id);
+        $member->name = $req->name;
+        $member->email = $req->email;
+        $member->address = $req->address;
+        $member->brand_id = $req->brand_id;
+
+        $result = $member->save();
+        if($result){
+          return ["result" => "Data has been updated."];
         }else{
           return ["result" => "Operation Failed!"];
         }

@@ -26,3 +26,4 @@ Route::get('/list/{id?}', [ApiController::class, 'getMemberAPI']);
 // Route::get("list/{key:name?}", ['ApiController::class', 'list']);
 Route::post('/store-data', [ApiController::class, 'storeDataPostAPI']);
 Route::post('/store-brand', [ApiController::class, 'storeBrandPostAPI']);
+Route::put('/update-member/{id}', [ApiController::class, 'updateMemberPutAPI']);
