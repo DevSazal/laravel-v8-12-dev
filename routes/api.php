@@ -47,4 +47,5 @@ Route::post('/login', [AuthController::class, 'index']);
 Route::group(['middleware'=>'auth:sanctum'], function(){
   // All Secure API URL
   Route::get('/list/{id?}', [ApiController::class, 'getMemberAPI']);
+  Route::post('/upload-file', [ApiController::class, 'uploadMemberFIleAPI']);
 });

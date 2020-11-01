@@ -100,8 +100,35 @@ class ApiController extends Controller
 
     public function searchMemberAPI($key)
     {
-      // code...
+      // code... Search API
         return Member::where('name', 'LIKE', '%'.$key.'%')->get();
+    }
+
+    public function uploadMemberFIleAPI(Request $req)
+    {
+      // code...  API Validation + file upload
+      $validator = Validator::make($req->all(), [
+          'file' => 'required|mimes:jpg,jpeg,gif,png,pdf,doc,docx,xls,xlsx,ppt,pptx',
+          'member_id' => 'integer'
+      ]);
+
+
+      if ($validator->fails()) {
+          // return $validator->errors();
+          return response()->json($validator->errors(), 401);
+      }else {
+        // code... if data valid + model direcr call
+          $model = new \App\Models\File;
+          $model->file = $req->file('file')->store('apiUploader');
+          $model->member_id = $req->member_id;
+          $result = $model->save();
+          if($result){
+            return ["result" => "File has been uploaded.", "path" => "{$model->file}"];
+          }else{
+            return ["result" => "Operation Failed!"];
+          }
+      }
+
     }
 
 
