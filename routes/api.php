@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Add API Directory
 use App\Http\Controllers\API\ApiController;
+use App\Http\Controllers\API\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,6 @@ Route::put('/update-member/{id}', [ApiController::class, 'updateMemberPutAPI']);
 Route::delete('/delete-member/{id}', [ApiController::class, 'deleteMemberAPI']);
 // search api
 Route::get('/search-api/{key}', [ApiController::class, 'searchMemberAPI']);
+
+// API with Resource Controller
+Route::apiResource('/brand', BrandController::class);
