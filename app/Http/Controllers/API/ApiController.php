@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator; // validator class for rules
 
 use App\Models\Member;
 use App\Models\Brand;
@@ -23,19 +24,34 @@ class ApiController extends Controller
 
     public function storeDataPostAPI(Request $req)
     {
-      // code...
-        $member = new Member;
-        $member->name = $req->name;
-        $member->email = $req->email;
-        $member->address = $req->address;
-        $member->brand_id = $req->brand_id;
+      // code...  API Validation
+      $validator = Validator::make($req->all(), [
+	        'name' => 'required|string|min:3|max:50',
+	        'email' => 'required|string|email|max:255|unique:members,email',
+          'address' => 'required|string|max:80',
+	        'brand_id' => 'required|integer'
+	    ]);
 
-        $result = $member->save();
-        if($result){
-          return ["result" => "Data has been saved."];
-        }else{
-          return ["result" => "Operation Failed!"];
-        }
+	    //
+
+  		if ($validator->fails()) {
+          return $validator->errors();
+      }else {
+        // code... if data valid
+          $member = new Member;
+          $member->name = $req->name;
+          $member->email = $req->email;
+          $member->address = $req->address;
+          $member->brand_id = $req->brand_id;
+
+          $result = $member->save();
+          if($result){
+            return ["result" => "Data has been saved."];
+          }else{
+            return ["result" => "Operation Failed!"];
+          }
+      }
+
     }
 
     public function storeBrandPostAPI(Request $req)
