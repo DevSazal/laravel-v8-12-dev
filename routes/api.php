@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Add API Directory
 use App\Http\Controllers\API\ApiController;
 use App\Http\Controllers\API\BrandController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,18 @@ use App\Http\Controllers\API\BrandController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('dummyAPI', [ApiController::class, 'DummyAPI']);
-Route::get('/list/{id?}', [ApiController::class, 'getMemberAPI']);
+
 // Route::get("list/{key:name?}", ['ApiController::class', 'list']);
 Route::post('/store-data', [ApiController::class, 'storeDataPostAPI']);
 Route::post('/store-brand', [ApiController::class, 'storeBrandPostAPI']);
@@ -34,3 +41,10 @@ Route::get('/search-api/{key}', [ApiController::class, 'searchMemberAPI']);
 
 // API with Resource Controller
 Route::apiResource('/brand', BrandController::class);
+// API Login
+Route::post('/login', [AuthController::class, 'index']);
+
+Route::group(['middleware'=>'auth:sanctum'], function(){
+  // All Secure API URL
+  Route::get('/list/{id?}', [ApiController::class, 'getMemberAPI']);
+});
