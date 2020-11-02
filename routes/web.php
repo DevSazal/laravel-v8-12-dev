@@ -24,7 +24,7 @@ use App\Http\Controllers\MemberController;
 
 //Route::get('/','DefaultController@index');
 
-Route::get('/', [DefaultController::class, 'index']);
+Route::get('/', [DefaultController::class, 'index'])->middleware('age');
 Route::get('/test',[DefaultController::class, 'index']);
 Route::get('/about',[DefaultController::class, 'about']);
 Route::get('/apiusers',[DefaultController::class, 'apiUsers']);
